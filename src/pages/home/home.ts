@@ -12,13 +12,14 @@ import { AuthService } from '../../services/auth.service';
 export class HomePage {
 
   creds : CredenciaisDTO = {
-      email: "",
-        senha: ""
-      };
+    email: "",
+    senha: ""
+  };
 
-  constructor(public navCtrl: NavController, 
-              public menu: MenuController,
-              public auth: AuthService) {
+  constructor(
+    public navCtrl: NavController, 
+    public menu: MenuController,
+    public auth: AuthService) {
 
   }
 
@@ -32,11 +33,10 @@ export class HomePage {
 
   login() {
     this.auth.authenticate(this.creds)
-    .subscribe(response => {
-      this.auth.successfulLogin(response.headers.get('Authorization'));
-      this.navCtrl.setRoot('CategoriasPage');
-    },
-
-    error =>{});
+      .subscribe(response => {
+        this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+      error => {});    
   }
 }
